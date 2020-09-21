@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_add_portal.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -23,6 +24,12 @@ class AddPortalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btn_add_portal.setOnClickListener {
+            addPortal()
+        }
+    }
+
+    fun addPortal () {
 
     }
 }
