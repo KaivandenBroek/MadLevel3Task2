@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.fragment_portals.*
 
 /**
@@ -33,14 +35,8 @@ class PortalsFragment : Fragment() {
     }
 
     private fun initViews() {
-        rv_portals.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        rv_portals.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rv_portals.adapter = portalAdapter
-        rv_portals.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-        )
 
         observeAddPortalResult()
     }
@@ -50,11 +46,11 @@ class PortalsFragment : Fragment() {
         setFragmentResultListener(PORTAL_REQUEST_KEY) { _, bundle ->
             bundle.getString(
                 BUNDLE_PORTAL_TITLE_KEY
-            ).let {
+            )?.let {
                 portalTitle = it
                 bundle.getString(
                     BUNDLE_PORTAL_URL_KEY
-                ).let {
+                )?.let {
                     val newPortal = Portal(portalTitle!!, it)
                     portals.add(newPortal)
                     portalAdapter.notifyDataSetChanged()
