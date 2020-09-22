@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_portal.view.*
 
 class PortalAdapter(private val portals: List<Portal>) :
-    RecyclerView.Adapter<PortalAdapter.ViewHolder>(){
+    RecyclerView.Adapter<PortalAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {

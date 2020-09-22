@@ -35,7 +35,8 @@ class PortalsFragment : Fragment() {
     }
 
     private fun initViews() {
-        rv_portals.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        rv_portals.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rv_portals.adapter = portalAdapter
 
         observeAddPortalResult()

@@ -40,8 +40,13 @@ class AddPortalFragment : Fragment() {
         val url = ti_url.text.toString()
 
         if (title.isNotBlank() && url.isNotBlank()) {
-            setFragmentResult(PORTAL_REQUEST_KEY, bundleOf(Pair(BUNDLE_PORTAL_TITLE_KEY, title), Pair(
-                BUNDLE_PORTAL_URL_KEY, url)))
+            setFragmentResult(
+                PORTAL_REQUEST_KEY, bundleOf(
+                    Pair(BUNDLE_PORTAL_TITLE_KEY, title), Pair(
+                        BUNDLE_PORTAL_URL_KEY, url
+                    )
+                )
+            )
 
             //"pop" the backstack, this means we destroy
             //this fragment and go back to the RemindersFragment
