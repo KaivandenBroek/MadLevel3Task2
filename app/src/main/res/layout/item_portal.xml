@@ -11,7 +11,7 @@
     card_view:cardUseCompatPadding="true">
 
     <TextView
-        android:id="@+id/tvReminder"
+        android:id="@+id/tvPortal"
         android:layout_margin="16dp"
         style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="match_parent"
