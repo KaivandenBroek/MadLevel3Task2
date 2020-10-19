@@ -1,11 +1,16 @@
 package com.example.madlevel3task2
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_portals.*
  */
 class PortalsFragment : Fragment() {
     private val portals = arrayListOf<Portal>()
-    private val portalAdapter = PortalAdapter(portals)
+    private val portalAdapter = PortalAdapter(portals, ::portalItemClicked)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +45,22 @@ class PortalsFragment : Fragment() {
         rv_portals.adapter = portalAdapter
 
         observeAddPortalResult()
+    }
+    private fun portalItemClicked(portalItem: Portal) {
+        Toast.makeText(context, "clicked: ${portalItem.title}", Toast.LENGTH_LONG).show()
+        openCustomTab(portalItem.url)
+    }
+
+    private fun openCustomTab(url: String) {
+        val builder = CustomTabsIntent.Builder()
+        context?.let { ContextCompat.getColor(it, R.color.colorPrimary) }?.let {
+            builder.setToolbarColor(
+                it
+            )
+        }
+
+        val customTabsIntent = builder.build();
+        context?.let { customTabsIntent.launchUrl(it, Uri.parse(url)) };
     }
 
     private fun observeAddPortalResult() {
